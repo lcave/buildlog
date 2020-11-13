@@ -17,9 +17,6 @@ services:
       - "5000:5000"
     depends_on:
       - db
-    networks:
-        - backend
-        - frontend
   client:
     build:
       context: ./buildlog_client
@@ -28,11 +25,3 @@ services:
       - ./app
     ports:
       - 3000:3000
-    depends_on:
-      - server
-    networks:
-        - backend
-        - frontend
-networks:
-  backend:
-  frontend: 

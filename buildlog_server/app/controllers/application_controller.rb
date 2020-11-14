@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
   before_action :authorized
 
   def encode_token(payload)
+    payload[:exp] = (Time.now + 15.minutes).to_i
     JWT.encode(payload, Rails.application.credentials.jwt[:secret])
   end
 

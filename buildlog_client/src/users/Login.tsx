@@ -16,20 +16,23 @@ function Login() {
         }).then(function (response) {
             login(response.data.token)
         }).catch(function () {
-            setError(<span>Invalid email or password</span>);
+            setError(<span className="bg-red-300 p-2 rounded-lg">Invalid email or password</span>);
         })
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="absolute w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+            <div className="p-10 bg-white rounded-lg text-center shadow-lg">
+                <h1 className="text-3xl mb-4">Login</h1>
                 {error}
-                <label className="text-white" >Email</label>
-                <input type="text" name="email" onChange={e => setEmail(e.target.value)} />
-                <label>Password</label>
-                <input type="text" name="password" onChange={e => setPassword(e.target.value)} />
-                <input type="submit" />
-            </form>
+                <form onSubmit={handleSubmit} className="flex flex-col text-left my-4">
+                    <label className="text-blue-700 text-lg ml-2" >Email</label>
+                    <input className="mb-4 bg-gray-200 p-2 rounded-lg outline-none border-transparent border-2 focus:border-blue-700" autoFocus type="text" name="email" onChange={e => setEmail(e.target.value)} />
+                    <label className="text-blue-700 text-lg ml-2">Password</label>
+                    <input className="mb-4 bg-gray-200 p-2 rounded-lg outline-none border-transparent border-2 focus:border-blue-700" type="text" name="password" onChange={e => setPassword(e.target.value)} />
+                    <input type="submit" className="mt-4 p-2 rounded-lg mx-20 text-lg hover:bg-green-400 bg-green-200 transition-colors duration-200 outline-none border-transparent border focus:border-blue-700" />
+                </form>
+            </div>
         </div>
     )
 }

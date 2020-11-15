@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { animated, useTransition } from "react-spring";
 import axios from 'axios';
-import { login } from '../utils/auth/login';
+import { login } from '../utils/auth';
 import { API_URL } from '../utils/env';
 import LoadingButton from '../app/LoadingButton';
 import useComponentSize from '@rehooks/component-size';
@@ -23,7 +23,7 @@ function Login() {
         update: { height }
     });
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = e => {
         e.preventDefault();
         if (error) { toggleError(false) };
         toggleSubmit(true);
@@ -33,7 +33,9 @@ function Login() {
         }).then(function (response) {
             login(response.data.token)
         }).catch(function () {
-            toggleError(true);
+            const timeout = setTimeout(() => {
+                toggleError(true);
+            }, 400);
             toggleSubmit(false);
         })
     }

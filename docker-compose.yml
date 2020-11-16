@@ -6,22 +6,22 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
-  server:
+  api:
     build:
-      context: ./buildlog_server
+      context: ./api
       dockerfile: Dockerfile
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 5000 -b '0.0.0.0'"
     volumes:
-      - ./buildlog_server/:/server
+      - ./api/:/api
     ports:
       - "5000:5000"
     depends_on:
       - db
   client:
     build:
-      context: ./buildlog_client
+      context: ./client
       dockerfile: Dockerfile
     volumes:
-      - ./buildlog_client/:/app
+      - ./client/:/app
     ports:
       - 3000:3000

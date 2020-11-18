@@ -1,17 +1,12 @@
-FROM ruby:2.7
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client vim
-RUN mkdir /api
+# pull official base image
+FROM node:13.12.0-alpine
+
+# set working directory
 WORKDIR /api
-COPY Gemfile /api/Gemfile
-COPY Gemfile.lock /api/Gemfile.lock
-RUN bundle install
-COPY . /api
 
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 5000
+# install app dependencies
+COPY . ./
+RUN npm install --silent
 
-# Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# start app
+CMD ["npm", "start"]

@@ -1,22 +1,24 @@
-version: "3.8"
+version: "3.3"
 services:
   db:
     image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: password
   api:
     build:
       context: ./api
       dockerfile: Dockerfile
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 5000 -b '0.0.0.0'"
     volumes:
       - ./api/:/api
     ports:
-      - "5000:5000"
+      - "4000:4000"
     depends_on:
       - db
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/postgres
   client:
     build:
       context: ./client

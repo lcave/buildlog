@@ -1,11 +1,11 @@
-import Head from 'next/head'
-import Login from '../components/users/Login.tsx'
+import Header from '../components/app/Header'
+import Login from '../components/sessions/Login.tsx'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Login />
+    <div className="w-screen h-screen bg-gray-400">
+        <Header />
     </div>
   )
 }

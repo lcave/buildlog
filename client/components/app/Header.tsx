@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
+import { animated, useTransition } from 'react-spring';
+import Login from '../sessions/Login';
 
 function Header() {
+
+    const [showLogin, toggleLogin] = useState(false);
+    const [showSignup, toggleSignup] = useState(false);
+
+    const handleLoginToggle = () => {
+        toggleLogin(!showLogin)
+    }
+
+    var login = null;
+
     return (
-        <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
-            <div className="flex items-center flex-shrink-0 text-white mr-6">
+        <nav className="justify-between flex-wrap bg-white px-6 py-3 absolute top-0 w-screen">
+            <div className="inline text-dark mr-6">
                 <span className="font-semibold text-xl tracking-tight">Buildlog</span>
             </div>
-            <div className="block lg:hidden">
-                <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-                    <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
+            <div className="float-right">
+                <button className="button font-bold mr-2 px-10 py-1 rounded-lg text-lg bg-transparent 
+                                   transition-all duration-300 border border-blue-800 hover:border-green-500 
+                                   hover:bg-green-500 text-blue-700 hover:text-white"
+                    onClick={() => handleLoginToggle()}>
+                    Login
+                </button>
+                <button className="button font-bold px-10 py-1 rounded-lg text-lg hover:bg-blue-700 bg-blue-500 transition-all duration-300 text-white border border-transparent">
+                    Sign up
                 </button>
             </div>
-            <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                <div className="text-sm lg:flex-grow">
-                </div>
-            </div>
+            <Login show={showLogin} handleClose={handleLoginToggle} />
         </nav>
     );
 }
-
 export default Header

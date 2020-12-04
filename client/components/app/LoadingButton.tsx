@@ -1,7 +1,15 @@
-import React from "react";
+import React, { ButtonHTMLAttributes, ReactNode, ReactPropTypes } from "react";
 import { useSpring, animated } from "react-spring";
 
-function LoadingButton({ isLoading, children, ...props}) {
+type LoadingButtonTypes = {
+    isLoading: boolean,
+    children?: ReactNode,
+    className: string,
+    type: 'submit' | 'reset' | 'button',
+    props?: string
+}
+
+function LoadingButton({ isLoading, children, ...props }: LoadingButtonTypes) {
     const [showLoader, setShowLoader] = React.useState(false);
 
     React.useEffect(() => {
@@ -19,9 +27,6 @@ function LoadingButton({ isLoading, children, ...props}) {
         }
     }, [isLoading, showLoader]);
 
-    /* Capture the dimensions of the button before the loading happens
-    so it doesn’t change size.
-    These hooks can be put in a seprate file. */
     const [width, setWidth] = React.useState(0);
     const [height, setHeight] = React.useState(0);
     const ref = React.useRef(null);
@@ -35,7 +40,6 @@ function LoadingButton({ isLoading, children, ...props}) {
         }
     }, [children]);
 
-    // Hooks used to fade in/out the loader or the button contents
     const fadeOutProps = useSpring({ opacity: showLoader ? 1 : 0 });
     const fadeInProps = useSpring({ opacity: showLoader ? 0 : 1 });
 
@@ -43,15 +47,7 @@ function LoadingButton({ isLoading, children, ...props}) {
         <button
             {...props}
             ref={ref}
-            style={
-                showLoader
-                    ? {
-                        width: `${width}px`,
-                        height: `${height}px`
-                    }
-                    : {}
-            }
-        >
+            style={showLoader ? { width: `${width}px`, height: `${height}px` } : {}} >
             {showLoader ? (
                 <animated.div style={fadeOutProps}>
                     <div className="loader" />

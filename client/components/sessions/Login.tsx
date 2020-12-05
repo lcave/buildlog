@@ -60,7 +60,7 @@ function Login({ show = false, handleClose, swapForm, ...props }) {
                             <span ref={ref} className="p-2" >Invalid email or password</span>
                         </animated.div>
                     ))}
-            <form onSubmit={handleSubmit} id="login-form" className="flex flex-col text-left my-4">
+            <form onSubmit={handleSubmit} id="login-form" className="flex flex-col text-left my-4 sessions-form">
                 <label className="text-blue-700 text-lg ml-2" >Email</label>
                 <input className={inputClasses} autoFocus type="text" name="email" onChange={e => setEmail(e.target.value)} />
                 <label className="text-blue-700 text-lg ml-2">Password</label>

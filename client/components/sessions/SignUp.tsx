@@ -60,19 +60,13 @@ function SignUp({ show = false, handleClose, swapForm, ...props }) {
                             <span ref={ref} className="p-2" >Invalid email or password</span>
                         </animated.div>
                     ))}
-            <form onSubmit={handleSubmit} id="login-form" className="flex flex-col text-left my-4">
+            <form onSubmit={handleSubmit} id="login-form" className="flex flex-col text-left my-4 sessions-form">
+                <label className="text-blue-700 text-lg ml-2" >Username</label>
+                <input className={inputClasses} autoFocus type="text" name="email" onChange={e => setEmail(e.target.value)} />
                 <label className="text-blue-700 text-lg ml-2" >Email</label>
                 <input className={inputClasses} autoFocus type="text" name="email" onChange={e => setEmail(e.target.value)} />
                 <label className="text-blue-700 text-lg ml-2">Password</label>
                 <input className={inputClasses} type="text" name="password" onChange={e => setPassword(e.target.value)} />
-                <div className="flex items-center mb-6 ml-2">
-                    <input className="mr-2 leading-tight" type="checkbox" onChange={e => setRemember(!remember)} />
-                    <label className="block">
-                        <span className="text-sm">
-                            Stay signed in
-                            </span>
-                    </label>
-                </div>
                 <LoadingButton className="button p-2 rounded-lg text-lg hover:bg-green-400 
                         bg-green-200 transition-all duration-300 outline-none 
                         border-transparent border focus:border-blue-700"

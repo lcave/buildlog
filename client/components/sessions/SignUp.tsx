@@ -64,7 +64,7 @@ function SignUp({ show = false, handleClose, swapForm, ...props }) {
                 <label className="text-blue-700 text-lg ml-2" >Username</label>
                 <input className={inputClasses} autoFocus type="text" name="email" onChange={e => setEmail(e.target.value)} />
                 <label className="text-blue-700 text-lg ml-2" >Email</label>
-                <input className={inputClasses} autoFocus type="text" name="email" onChange={e => setEmail(e.target.value)} />
+                <input className={inputClasses} type="text" name="email" onChange={e => setEmail(e.target.value)} />
                 <label className="text-blue-700 text-lg ml-2">Password</label>
                 <input className={inputClasses} type="text" name="password" onChange={e => setPassword(e.target.value)} />
                 <LoadingButton className="button p-2 rounded-lg text-lg hover:bg-green-400 

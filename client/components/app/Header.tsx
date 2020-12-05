@@ -8,22 +8,16 @@ import SessionsWrapper from '../sessions/SessionsWrapper';
 function Header() {
 
     const [showOverlay, toggleOverlay] = useState(false);
-    const [showForm, setShowForm] = useState(false);
+    const [formIndex, setFormIndex] = useState(0);
 
-    const openOverlay = () => {
+    const openOverlay = (index) => {
+        setFormIndex(index)
         toggleOverlay(true)
-        setShowForm(true)
     }
 
     const closeOverlay = () => {
         toggleOverlay(false)
     }
-
-    useEffect(() => {
-        if (!showForm) {
-            toggleOverlay(false);
-        }
-    })
 
     return (
         <nav className="justify-between flex-wrap bg-white px-6 py-3 absolute top-0 w-screen">
@@ -34,14 +28,16 @@ function Header() {
                 <button className="button font-bold mr-2 px-10 py-1 rounded-lg text-lg bg-transparent 
                                    transition-all duration-300 border border-blue-800 hover:border-green-500 
                                    hover:bg-green-500 text-blue-700 hover:text-white"
-                    onClick={() => openOverlay()}>
+                    onClick={() => openOverlay(0)}>
                     Log In
                 </button>
-                <button className="button font-bold px-10 py-1 rounded-lg text-lg hover:bg-blue-700 bg-blue-500 transition-all duration-300 text-white border border-transparent">
+                <button className="button font-bold px-10 py-1 rounded-lg text-lg hover:bg-blue-700 bg-blue-500 
+                                   transition-all duration-300 text-white border border-transparent"
+                    onClick={() => openOverlay(1)}>
                     Sign up
                 </button>
             </div>
-            <SessionsWrapper show={showOverlay} showForm={showForm} setShowForm={setShowForm} handleClose={closeOverlay} />
+            <SessionsWrapper show={showOverlay} handleClose={closeOverlay} index={formIndex} />
         </nav>
     );
 }

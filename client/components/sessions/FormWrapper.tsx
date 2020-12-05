@@ -3,9 +3,9 @@ import { animated, useSpring } from 'react-spring';
 import Login from './Login';
 import SignUp from './SignUp';
 
-function FormWrapper({ show = false, handleClose, ...props }) {
+function FormWrapper({ show = false, handleClose, index, ...props }) {
 
-    const [flipped, set] = useState(false)
+    const [flipped, set] = useState(index)
     const { transform, opacity, zIndex } = useSpring({
         opacity: flipped ? 1 : 0,
         zIndex: flipped? 2 : 0,

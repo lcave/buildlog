@@ -17,8 +17,6 @@ services:
       - "4000:3000"
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/postgres
   client:
     build:
       context: ./client

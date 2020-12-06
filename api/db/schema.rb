@@ -15,25 +15,6 @@ ActiveRecord::Schema.define(version: 20201206060924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "User", id: :serial, force: :cascade do |t|
-    t.text "name"
-    t.text "email"
-    t.index ["email"], name: "User.email_unique", unique: true
-  end
-
-  create_table "_Migration", primary_key: "revision", id: :serial, force: :cascade do |t|
-    t.text "name", null: false
-    t.text "datamodel", null: false
-    t.text "status", null: false
-    t.integer "applied", null: false
-    t.integer "rolled_back", null: false
-    t.text "datamodel_steps", null: false
-    t.text "database_migration", null: false
-    t.text "errors", null: false
-    t.datetime "started_at", precision: 3, null: false
-    t.datetime "finished_at", precision: 3
-  end
-
   create_table "builds", force: :cascade do |t|
     t.string "title"
     t.integer "user_id"
@@ -44,7 +25,7 @@ ActiveRecord::Schema.define(version: 20201206060924) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

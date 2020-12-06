@@ -1,5 +1,5 @@
 module Mutations
-  class CreateBuildMutation < BaseMutation
+  class CreateBuild < BaseMutation
     field :build, Types::BuildType, null: false
 
     argument :title, String, required: true, description: "Build thread title, string"

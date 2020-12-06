@@ -1,5 +1,11 @@
 # Buildlog
 
-Node.js server and Next.js client for sharing automotive build logs.
+Rails GraphQL API and Next.js client for sharing automotive build logs.
 
-The two services are contained in Docker containers which can be launched and orchestarated using docker-compose up in the projects root directory.
+# Installation
+* Clone repository to your local machine
+* Run docker-compose build in the root directory
+* Run docker-compose up in the root directory
+
+API is available at localhost:4000
+Next.js app is available at localhost:3000

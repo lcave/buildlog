@@ -1,12 +1,14 @@
-# pull official base image
-FROM node:13.12.0-alpine
+FROM ruby:alpine
 
-# set working directory
+RUN apk update && apk add bash build-base nodejs postgresql-dev tzdata
+
+RUN mkdir /api
 WORKDIR /api
 
-# install app dependencies
-COPY . ./
-RUN npm install --silent
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler --no-document
+RUN bundle install --no-binstubs --jobs $(nproc) --retry 3
 
-# start app
-CMD ["npm", "start"]
+COPY . .
+
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

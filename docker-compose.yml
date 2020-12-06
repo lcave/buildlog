@@ -14,7 +14,7 @@ services:
     volumes:
       - ./api/:/api
     ports:
-      - "4000:4000"
+      - "4000:3000"
     depends_on:
       - db
     environment:
